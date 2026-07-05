@@ -21,18 +21,15 @@ In edge-cloud systems, you face a frustrating trade-off:
 ---
 
 ## The Idea
-┌─────────────┐         Low Entropy (Confident)         ┌─────────────┐
-│   Client    │ ────────────────────────────────────────> │ Edge Model  │
-│   Request   │         (Serve Locally, ~7ms)           │  DistilBERT │
-└─────────────┘                                         └─────────────┘
-│
-│ High Entropy (Uncertain)
-│
-▼
-┌─────────────┐         Offload to Cloud              ┌─────────────┐
-│   Client    │ ────────────────────────────────────────> │Cloud Model  │
-│   Request   │         (Accurate but Slow, ~250ms)     │RoBERTa-large│
-└─────────────┘                                         └─────────────┘
+
+```mermaid
+flowchart LR
+    A[Client Request] -->|Low Entropy<br/>Serve Locally ~7ms| B[Edge Model<br/>DistilBERT 67M]
+    A -->|High Entropy<br/>Offload to Cloud ~250ms| C[Cloud Model<br/>RoBERTa-large 355M]
+    
+    style B fill:#e1f5e1,stroke:#2e7d32,stroke-width:2px
+    style C fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style A fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
 
 
 We use **Monte Carlo Dropout** to estimate epistemic uncertainty at the edge. If the model is confident, we serve locally. If uncertain, we escalate to the cloud.

@@ -22,7 +22,6 @@ In edge-cloud systems, you face a frustrating trade-off:
 
 ## The Idea
 
-```mermaid
 flowchart LR
     A[Client Request] -->|Low Entropy<br/>Serve Locally ~7ms| B[Edge Model<br/>DistilBERT 67M]
     A -->|High Entropy<br/>Offload to Cloud ~250ms| C[Cloud Model<br/>RoBERTa-large 355M]

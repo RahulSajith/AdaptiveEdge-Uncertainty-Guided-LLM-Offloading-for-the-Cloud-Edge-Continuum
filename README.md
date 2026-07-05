@@ -22,7 +22,7 @@ In edge-cloud systems, you face a frustrating trade-off:
 
 # The Idea
 
-![AdaptiveEdge Architecture](Screenshot 2026-07-05 221137.png)
+![AdaptiveEdge Architecture](resultsarchitecture.png)
 
 We use **Monte Carlo Dropout** to estimate epistemic uncertainty at the edge. If the model is confident, we serve locally. If uncertain, we escalate to the cloud.
 
